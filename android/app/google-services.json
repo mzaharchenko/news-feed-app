@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "218543446691",
+    "firebase_url": "https://news-feed-app-fc948.firebaseio.com",
+    "project_id": "news-feed-app-fc948",
+    "storage_bucket": "news-feed-app-fc948.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218543446691:android:9f3510a3fa7ee2dddd3d16",
+        "android_client_info": {
+          "package_name": "com.newsfeedapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218543446691-qta24cdhsbukt64ata9v2inbi0jqsvbp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDj7S6JR_-ajTJgFEnkMHUFJU_0y91Q4NQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218543446691-qta24cdhsbukt64ata9v2inbi0jqsvbp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
