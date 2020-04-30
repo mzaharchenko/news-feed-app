@@ -1,7 +1,7 @@
 // Main.js
 import React from 'react'
 import auth from '@react-native-firebase/auth';
-import { StyleSheet, Platform, Image, Text, View } from 'react-native'
+import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
 export default class Main extends React.Component {
 
 state = { currentUser: null }
@@ -10,6 +10,14 @@ state = { currentUser: null }
     this.setState({ currentUser })
 }
 
+ handleLogout = () => {
+    const { email, password } = this.state
+      auth()
+      .signOut()
+      .then(() => this.props.navigation.navigate('Login'))
+      .catch(error => this.setState({ errorMessage: error.message }))
+  }
+
 render() {
     const { currentUser } = this.state
 return (
@@ -17,6 +25,7 @@ return (
         <Text>
           Hi {currentUser && currentUser.email}!
         </Text>
+      <Button title="Logout" onPress={this.handleLogout}/>
       </View>
     )
   }
