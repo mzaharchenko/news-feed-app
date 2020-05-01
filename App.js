@@ -1,11 +1,13 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { StyleSheet, Platform, Image, Text, View } from 'react-native';
+import { StyleSheet, Platform, Image, Text, View, ImageBackground } from 'react-native';
 import { createSwitchNavigator,createAppContainer  } from 'react-navigation';
 import firebase from '@react-native-firebase/app';
 import Loading from './Loading'
 import Login from './Login'
 import Main from './Main'
+import Logo from './Logo'
+
 
 // TODO(you): import any additional firebase services that you require for your app, e.g for auth:
 //    1) install the npm package: `yarn add @react-native-firebase/auth@alpha` - you do not need to
@@ -24,3 +26,4 @@ Main
 initialRouteName: 'Loading'
 }
 ));
+
