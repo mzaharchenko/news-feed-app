@@ -6,13 +6,23 @@ import { StyleSheet, Text, TextInput, View, Button, Image, TouchableOpacity, Ima
 import background from './images/background.png';
 export default class Login extends React.Component {
   state = { email: '', password: '', errorMessage: null }
+   
 
   handleLogin = () => {
     const { email, password } = this.state
+    if( this.state.email.trim() == '') {
+      alert( "Please fill the Email" );
+      return false;
+   }
+    if( this.state.password.trim() == '') {
+      alert( "Please fill the password" );
+      return false;
+   } 
       auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => this.props.navigation.navigate('Main'))
       .catch(error => this.setState({ errorMessage: error.message }))
+      
   }
   
   render() {
@@ -34,6 +44,8 @@ export default class Login extends React.Component {
               placeholder="Email"
               onChangeText={email => this.setState({ email })}
               value={this.state.email}
+              
+              
             />
             <TextInput
               secureTextEntry
@@ -42,8 +54,12 @@ export default class Login extends React.Component {
               placeholder="Password"
               onChangeText={password => this.setState({ password })}
               value={this.state.password}
+              
             />
-            <TouchableOpacity style={styles.buttonStyle} onPress={this.handleLogin}>
+            <TouchableOpacity style={styles.buttonStyle} onPress={this.handleLogin}
+            
+            >
+              
               <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>  
       </ImageBackground>
