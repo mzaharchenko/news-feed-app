@@ -1,0 +1,46 @@
+import React from 'react'
+import auth from '@react-native-firebase/auth';
+import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
+
+export default class Profile extends React.Component {
+
+	state = { currentUser: null }
+	
+	constructor(props) {
+      super(props);
+      this.state = { currentUser: null };
+    }
+	
+	componentDidMount() {
+	    const { currentUser } = auth()
+	    this.setState({ currentUser })
+	}
+
+	 handleLogout = () => {
+	    const { email, password } = this.state
+	      auth()
+	      .signOut()
+	      .then(() => this.props.navigation.navigate('Login'))
+	      .catch(error => this.setState({ errorMessage: error.message }))
+	  }
+	  
+	render() {
+	    const { currentUser } = this.state
+		return (
+	      <View style={styles.container}>
+	        <Text>
+	          Hi {currentUser && currentUser.email}! How are you?
+	        </Text>
+	      <Button title="Logout" onPress={this.handleLogout}/>
+	      </View>
+	    )
+  	}
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+})
