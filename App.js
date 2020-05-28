@@ -1,9 +1,11 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import { StyleSheet, Platform, Image, Text, View, ImageBackground } from 'react-native';
-import { createSwitchNavigator,createAppContainer, createBottomTabNavigator   } from 'react-navigation';
+import { createSwitchNavigator,createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import firebase from '@react-native-firebase/app';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import Loading from './Loading'
 import Login from './Login'
 import Main from './Main'
@@ -19,17 +21,47 @@ import Profile from './Profile'
 //    3) import the package here in your JavaScript code: `import '@react-native-firebase/auth';`
 //    4) The Firebase Auth service is now available to use here: `firebase.auth().currentUser`
 
-const AppStack = createStackNavigator({ Main, Detail, Profile });
+const FeedStack = createStackNavigator({ Main, Detail });
+const ProfileStack = createStackNavigator({ Profile });
 const AuthStack = createStackNavigator({ Loading, Login }, {defaultNavigationOptions: {headerShown: false}});
 
+const MainTabs = createBottomTabNavigator(
+	{
+	  Feed: {
+	    screen: FeedStack,
+	    navigationOptions: {
+	      tabBarLabel: 'Feed',
+		  tabBarIcon: ({tintColor}) => (
+		      <Icon name='list' size={25} color={tintColor} />
+		    )
+	    },
+	  },
+	  Profile: {
+	    screen: ProfileStack,
+	    navigationOptions: {
+	      tabBarLabel: 'Profile',
+		  tabBarIcon: ({tintColor}) => (
+		      <Icon name='user' size={25} color={tintColor} />
+		    )
+	    },
+	  },
+	},
+	{
+		tabBarOptions: {
+	  	  activeTintColor: 'tomato',
+	  	  inactiveTintColor: 'gray',
+	  	},
+	}
+);
+
 export default createAppContainer(createSwitchNavigator(
-{
-Loading,
-App: AppStack,
-Auth: AuthStack,
-},
-{
-initialRouteName: 'Loading'
-}
+	{
+		Login,
+		Loading,
+		MainTabs
+	},
+	{
+		initialRouteName: 'Loading'
+	}
 ));
 

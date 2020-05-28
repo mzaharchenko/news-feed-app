@@ -1,20 +1,18 @@
 import React from 'react'
 import auth from '@react-native-firebase/auth';
-import { StyleSheet, Platform, View, BackHandler, Linking } from 'react-native'
-import { Text, Button, Card, Divider,Image } from 'react-native-elements';
+import { StyleSheet, Platform, View, BackHandler, Linking, Button } from 'react-native'
+import { Text, Card, Divider,Image } from 'react-native-elements';
 import moment from 'moment';
+import defaultImg from './images/news.jpg';
 
 export default class Detail extends React.Component {
 	constructor(props) {
       super(props);
-	  
-	  
 	  this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
     }
 	
 	componentDidMount() {
 	    BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
-		console.log(this.props.navigation.dangerouslyGetParent().state.routes );
 	}
 
 
@@ -33,8 +31,7 @@ export default class Detail extends React.Component {
 		  url
 	  } = this.props.navigation.state.params.article;
 	  const { noteStyle } = styles;
-	  const defaultImg =
-	  'https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Images-HD-Diamond-Pattern-PIC-WPB009691.jpg';
+
 	  const time = moment(publishedAt || moment.now()).fromNow();
 		const imageUri = urlToImage || defaultImg
 		return (
@@ -55,11 +52,9 @@ export default class Detail extends React.Component {
 				<Text>
 					{description || ''}
 				</Text>
-				
-				<Button title="Read more" onPress={() => Linking.openURL(url)}>
-				
-				</Button>
-				
+				<View>
+					<Button title="Read more" onPress={() => Linking.openURL(url)} color='tomato'/>
+				</View>
 	      </View>
 	    )
   	}

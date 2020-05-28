@@ -1,6 +1,7 @@
 import React from 'react'
 import auth from '@react-native-firebase/auth';
 import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
+import profileImg from './images/user.jpg';
 
 export default class Profile extends React.Component {
 
@@ -28,10 +29,11 @@ export default class Profile extends React.Component {
 	    const { currentUser } = this.state
 		return (
 	      <View style={styles.container}>
-	        <Text>
-	          Hi {currentUser && currentUser.email}! How are you?
+		  <Image source={profileImg} style={{ width: 200, height: 200 }} />
+	        <Text style={{marginBottom: 20}}>
+	          Hi {currentUser && currentUser.email}!
 	        </Text>
-	      <Button title="Logout" onPress={this.handleLogout}/>
+	      <Button title="Logout" onPress={this.handleLogout} color='tomato'/>
 	      </View>
 	    )
   	}

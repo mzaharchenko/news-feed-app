@@ -50,22 +50,17 @@ export default class Main extends React.Component {
 	render() {
 	    const { currentUser } = this.state
 		return (
-		  <View style={{flex:1}}>
-		  	<View style={{flex:1.6}}>
-			  <FlatList
-		        data={this.state.articles}
-		        renderItem={({ item }) => <Article article={item} navigation={this.props.navigation} />}
-		        keyExtractor={item => item.url}
-		        refreshing={this.state.refreshing}
-		        onRefresh={this.handleRefresh.bind(this)}
-				onEndReached={this.handleReachEnd.bind(this)}
-				onEndReachedThreshold={0.6}
-		      />
-			  </View>
-			  <View style={{flex:0.1}}>
-			  	<Button title="Profile" onPress={() => {this.props.navigation.navigate('Profile')} }/>
-			  </View>
-		 </View>
+	  	<View>
+		  <FlatList
+	        data={this.state.articles}
+	        renderItem={({ item }) => <Article article={item} navigation={this.props.navigation} />}
+	        keyExtractor={item => item.url}
+	        refreshing={this.state.refreshing}
+	        onRefresh={this.handleRefresh.bind(this)}
+			onEndReached={this.handleReachEnd.bind(this)}
+			onEndReachedThreshold={0.6}
+	      />
+		  </View>
 	    )
   	}
 }

@@ -4,17 +4,18 @@ import { StyleSheet, View, Linking, TouchableNativeFeedback } from 'react-native
 import { Text, Button, Card, Divider } from 'react-native-elements';
 import { createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 import moment from 'moment';
+import defaultImg from './images/news.jpg';
 
 export default class Article extends React.Component {
-	constructor(props) {
+  constructor(props) {
       super(props);
     }
-	
-	onPressHandler() {
-		this.props.navigation.navigate('Detail', {article: this.props.article, navigation: this.props.navigation})
-	}
-	
-	
+  
+  onPressHandler() {
+    this.props.navigation.navigate('Detail', {article: this.props.article, navigation: this.props.navigation})
+  }
+  
+  
   render() {
     const {
       title,
@@ -26,8 +27,6 @@ export default class Article extends React.Component {
     } = this.props.article;
     const { noteStyle } = styles;
     const time = moment(publishedAt || moment.now()).fromNow();
-    const defaultImg =
-      'https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Images-HD-Diamond-Pattern-PIC-WPB009691.jpg';
 
     return (
       <TouchableNativeFeedback
